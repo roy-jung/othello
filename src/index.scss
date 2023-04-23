@@ -1,0 +1,40 @@
+.othello {
+  width: 640px;
+  margin: 0 auto;
+}
+.current {
+  font-size: 3rem;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #16a;
+  color: white;
+}
+.board {
+  background-color: #aaa;
+}
+.row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(8, 1fr);
+}
+.square {
+  border: 1px solid #000;
+  margin: -1px 0 0 -1px;
+  aspect-ratio: 1;
+  font-size: 60px;
+  text-align: center;
+
+  &::after {
+    display: inline-block;
+    vertical-align: text-bottom;
+    content: '';
+  }
+
+  &.⚪️::after {
+    content: '⚪️';
+  }
+  &.⚫️::after {
+    content: '⚫️';
+  }
+}
