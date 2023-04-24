@@ -6,7 +6,7 @@ const Square = ({
   handleClickSquare,
 }: {
   value: ValueOrEmpty
-  handleClickSquare: () => void
+  handleClickSquare: (() => void) | undefined
 }) => <div className={classNames('square', value)} onClick={handleClickSquare} />
 
 export default Square

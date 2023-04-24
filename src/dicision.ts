@@ -57,7 +57,32 @@ const getFlipLineGetter =
     return flipTargets
   }
 
-const getFlipTargets = (board: ValueOrEmpty[][], position: Position, value: SquareValue) =>
+const getGameInfo = (board: ValueOrEmpty[][], value: SquareValue) => {
+  const flipLineGetter = getFlipLineGetter(board, value)
+  const info: {
+    white: number
+    black: number
+    empty: Position[]
+    available: boolean
+  } = {
+    white: 0,
+    black: 0,
+    empty: [],
+    available: true,
+  }
+  board.forEach((row, i) => {
+    row.forEach((col, j) => {
+      if (!col) info.empty.push({ row: i, col: j })
+      else info[col] += 1
+    })
+  })
+  info.available = info.empty.some(
+    pos => getLineValues(board, pos).map(flipLineGetter).flat().length,
+  )
+  return info
+}
+
+const getFlipTargets = (board: ValueOrEmpty[][], value: SquareValue, position: Position) =>
   getLineValues(board, position).map(getFlipLineGetter(board, value)).flat()
 
-export default getFlipTargets
+export { getFlipTargets, getGameInfo }

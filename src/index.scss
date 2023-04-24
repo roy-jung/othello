@@ -31,10 +31,10 @@
     content: '';
   }
 
-  &.⚪️::after {
+  &.white::after {
     content: '⚪️';
   }
-  &.⚫️::after {
+  &.black::after {
     content: '⚫️';
   }
 }
